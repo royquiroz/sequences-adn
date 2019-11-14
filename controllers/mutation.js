@@ -1,19 +1,18 @@
-const { buildChains, horizontalSequence } = require("../service/sequence")
+const {
+  buildChainHorizontal,
+  buildChainVertical,
+  buildChainOblique
+} = require("../service/sequence");
 
-exports.hasMutation = (dna) => {
-    // let array = ["ATGCGA","CAGTGC","TAATGT","AGAAGG","CCCCTA","TCACTG"]
-    buildChains(dna)
+exports.hasMutation = async dna => {
+  // let array = ["ATGCGA","CAGTGC","TAATGT","AGAAGG","CCCCTA","TCACTG"]
+  let horizontal = await buildChainHorizontal(dna);
+  let vertical = await buildChainVertical(dna);
+  await buildChainOblique(dna);
 
-    let count = 0;
-
-    dna.forEach(e => {
-        let info = horizontalSequence(e)
-        if (info) count += 1
-    })
-
-    console.log(count);
-    if(count < 2){
-        return false
-    }
-    return true
-}
+  if (horizontal + vertical < 2) {
+    return false;
+  } else {
+    return true;
+  }
+};
