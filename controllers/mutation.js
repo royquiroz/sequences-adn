@@ -1,3 +1,4 @@
+const Stats = require("../models/Stats");
 const {
   buildChainHorizontal,
   buildChainVertical,
@@ -5,14 +6,19 @@ const {
 } = require("../service/sequence");
 
 exports.hasMutation = async dna => {
-  // let array = ["ATGCGA","CAGTGC","TAATGT","AGAAGG","CCCCTA","TCACTG"]
+  let count = 0;
+  let response = "";
   let horizontal = await buildChainHorizontal(dna);
   let vertical = await buildChainVertical(dna);
-  await buildChainOblique(dna);
+  let diagonalLeft = await buildChainOblique(dna);
+  let diagonalRight = await buildChainOblique(dna, true);
 
-  if (horizontal + vertical < 2) {
-    return false;
-  } else {
-    return true;
-  }
+  count = horizontal + vertical + diagonalLeft + diagonalRight;
+
+  count < 2 ? (response = false) : (response = true);
+
+  let bd = await Stats.create({ dna, mutation: response });
+  console.log(bd);
+
+  return response;
 };

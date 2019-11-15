@@ -41,33 +41,30 @@ exports.buildChainVertical = array => {
   return count;
 };
 
-exports.buildChainOblique = array => {
-  let pieces = [];
-  let oblique = [];
-
-  array.forEach(e => {
-    pieces.push(e.split(""));
-  });
-
-  console.log(pieces);
-
-  pieces.forEach((e, i) => {
-    let string = "";
-    pieces.forEach((u, j) => {
-      if (j === i) string += pieces[j][i];
-      if (j === e.length - 1) string += pieces[i][j - i];
-    });
-    oblique.push(string);
-  });
+exports.buildChainOblique = (array, bottomToTop) => {
+  var maxLength = Math.max(array[0].length, array.length);
+  var temp;
+  var diagonal = [];
+  for (var k = 0; k <= 2 * (maxLength - 1); ++k) {
+    temp = [];
+    for (var y = array.length - 1; y >= 0; --y) {
+      var x = k - (bottomToTop ? array.length - y : y);
+      if (x >= 0 && x < array[0].length) {
+        temp.push(array[y][x]);
+      }
+    }
+    if (temp.length > 0) {
+      diagonal.push(temp.join(""));
+    }
+  }
 
   let count = 0;
 
-  // oblique.forEach(e => {
-  //   let info = validateSequence(e);
-  //   if (info) count += 1;
-  // });
+  diagonal.forEach(e => {
+    let info = validateSequence(e);
+    if (info) count += 1;
+  });
 
-  console.log(oblique);
   return count;
 };
 
@@ -76,6 +73,6 @@ function validateSequence(string) {
   string.split("").forEach(letter => {
     bases[letter] = (bases[letter] || 0) + 1;
   });
-  console.log(bases);
+  // console.log(bases);
   return Object.values(bases).includes(4);
 }
