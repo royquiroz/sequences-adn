@@ -47,7 +47,15 @@ _Herramientas que se utilizaron para crear el proyecto._
 - [Express](https://expressjs.com/es/) - Framework para Node.js
 - [Mongoose](https://mongoosejs.com/) - Usado para crear Schemas y conectarnos a la base de datos MongoDB
 - [MongoDB](https://www.mongodb.com/es) - Bases de Datos NoSQL
+- [Heroku](https://www.heroku.com/) - Hosting
 
 ## Autor ✒️
 
 - **Gonzalo Quiroz** - [royquiroz](https://github.com/royquiroz)
+
+## Url 💻
+
+Este proyecto se encuentra alojado en Heroku.
+
+- [/mutation](https://mutations.herokuapp.com/mutation) - POST
+- [/stats](https://mutations.herokuapp.com/stats) - GET
