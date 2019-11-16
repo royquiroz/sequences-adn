@@ -6,6 +6,8 @@ const {
 } = require("../service/sequence");
 
 exports.hasMutation = async dna => {
+  console.log(dna);
+
   let count = 0;
   let response = "";
   let horizontal = await buildChainHorizontal(dna);
@@ -17,8 +19,7 @@ exports.hasMutation = async dna => {
 
   count < 2 ? (response = false) : (response = true);
 
-  let bd = await Stats.create({ dna, mutation: response });
-  //   console.log(bd);
+  await Stats.create({ dna, mutation: response });
 
   return response;
 };

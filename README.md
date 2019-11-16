@@ -31,6 +31,14 @@ npm start
 
 > Aplicación corriendo en el puerto 3000
 
+## Ejecutando las pruebas ⚙️
+
+_Para ejecutar los test ejecutamos el comando_
+
+```
+npm test
+```
+
 ## Construido con 🛠️
 
 _Herramientas que se utilizaron para crear el proyecto._
