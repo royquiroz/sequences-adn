@@ -18,7 +18,7 @@ exports.hasMutation = async dna => {
   count < 2 ? (response = false) : (response = true);
 
   let bd = await Stats.create({ dna, mutation: response });
-  console.log(bd);
+  //   console.log(bd);
 
   return response;
 };
